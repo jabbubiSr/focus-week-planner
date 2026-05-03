@@ -104,3 +104,21 @@ main {
 .priority-badge.baja  { background: #27ae60; }
 .priority-badge.media { background: #f39c12; }
 .priority-badge.alta  { background: #e74c3c; }
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#task-list li.completed {
+  opacity: 0.5;
+}
+
+#task-list li.completed .task-text {
+  text-decoration: line-through;
+}
