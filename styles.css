@@ -5,31 +5,36 @@
 }
 
 body {
-  font-family: system-ui, sans-serif;
-  background: #f5f5f5;
-  color: #222;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  background: #f0f2f5;
+  color: #1a1a2e;
   min-height: 100vh;
 }
 
 header {
-  background: #2c3e50;
+  background: #1a1a2e;
   color: #fff;
-  padding: 1.25rem 2rem;
+  padding: 1.25rem 1.5rem;
 }
 
 header h1 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 main {
-  max-width: 600px;
+  max-width: 640px;
   margin: 2rem auto;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
+
+/* Formulario */
 
 #task-form {
   display: flex;
@@ -38,21 +43,47 @@ main {
 
 #task-input {
   flex: 1;
-  padding: 0.6rem 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0.65rem 0.875rem;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#task-input:focus {
+  border-color: #1a1a2e;
+}
+
+#task-priority {
+  padding: 0.65rem 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
 }
 
 #task-form button {
-  padding: 0.6rem 1.25rem;
-  font-size: 1rem;
-  background: #2c3e50;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #1a1a2e;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
 }
+
+#task-form button:hover {
+  opacity: 0.85;
+}
+
+/* Filtros */
 
 #filters {
   display: flex;
@@ -61,27 +92,27 @@ main {
 
 .filter-btn {
   padding: 0.4rem 1rem;
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
   background: #fff;
+  color: #555;
   cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.filter-btn:hover {
+  background: #e9eaf0;
 }
 
 .filter-btn.active {
-  background: #2c3e50;
+  background: #1a1a2e;
   color: #fff;
-  border-color: #2c3e50;
+  border-color: #1a1a2e;
 }
 
-#task-priority {
-  padding: 0.6rem 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
-  cursor: pointer;
-}
+/* Lista de tareas */
 
 #task-list {
   list-style: none;
@@ -90,35 +121,69 @@ main {
   gap: 0.5rem;
 }
 
-.priority-badge {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 3px;
-  margin-right: 0.5rem;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.priority-badge.baja  { background: #27ae60; }
-.priority-badge.media { background: #f39c12; }
-.priority-badge.alta  { background: #e74c3c; }
-
 #task-list li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: opacity 0.2s;
 }
 
 #task-list li.completed {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 #task-list li.completed .task-text {
   text-decoration: line-through;
+  color: #6b7280;
+}
+
+#task-list input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #1a1a2e;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task-text {
+  font-size: 0.95rem;
+}
+
+/* Badges de prioridad */
+
+.priority-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.priority-badge.baja  { background: #16a34a; }
+.priority-badge.media { background: #d97706; }
+.priority-badge.alta  { background: #dc2626; }
+
+/* Responsive móvil */
+
+@media (max-width: 480px) {
+  #task-form {
+    flex-wrap: wrap;
+  }
+
+  #task-input {
+    flex-basis: 100%;
+  }
+
+  #task-priority,
+  #task-form button {
+    flex: 1;
+  }
 }
