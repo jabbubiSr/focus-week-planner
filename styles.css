@@ -74,9 +74,33 @@ main {
   border-color: #2c3e50;
 }
 
+#task-priority {
+  padding: 0.6rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
 #task-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.priority-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.priority-badge.baja  { background: #27ae60; }
+.priority-badge.media { background: #f39c12; }
+.priority-badge.alta  { background: #e74c3c; }
